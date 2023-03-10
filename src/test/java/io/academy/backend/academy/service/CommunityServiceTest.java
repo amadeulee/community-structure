@@ -6,7 +6,6 @@ import io.academy.backend.academy.exceptions.DivisionByZeroException;
 import io.academy.backend.academy.exceptions.EngagementCalculationException;
 import io.academy.backend.academy.exceptions.NotFoundException;
 import io.academy.backend.academy.exceptions.RepositoryOperationException;
-import io.academy.backend.academy.repository.CommunityRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
