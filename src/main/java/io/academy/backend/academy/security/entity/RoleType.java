@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum RoleType {
-    VIEW("VIEW"),
-    ADMIN("VIEW", "ADMIN"),
-    SUPER("VIEW", "ADMIN", "SUPER");
+    ROLE_VIEW("VIEW"),
+    ROLE_ADMIN("VIEW", "ADMIN"),
+    ROLE_SUPER("VIEW", "ADMIN", "SUPER");
 
     private final List<String> roles;
 

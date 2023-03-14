@@ -8,3 +8,8 @@ spring:
       host: localhost
       port: 27017
       database: community
+      auto-index-creation: true
+
+security:
+  auth:
+    secret: amadeu

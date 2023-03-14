@@ -1,18 +1,20 @@
 package io.academy.backend.academy.security.entity;
 
-import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.persistence.PrePersist;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@Document
 public class User implements UserDetails {
 
+    @Indexed(unique = true)
     private String name;
     private String password;
     private List<Role> roles;
@@ -23,7 +25,18 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User() {
+    @PrePersist
+    public void validateRoles() {
+        if (this.roles != null && !this.roles.isEmpty()) {
+            List<RoleType> roleTypes = this.roles.stream()
+                    .map(Role::getRole)
+                    .collect(Collectors.toList());
+
+            Set<RoleType> uniqueKeys = new HashSet<>(roleTypes);
+            if (uniqueKeys.size() < roleTypes.size()) {
+                throw new RuntimeException("Não é permitido salvar entidades com chaves duplicadas na lista");
+            }
+        }
     }
 
     @Override

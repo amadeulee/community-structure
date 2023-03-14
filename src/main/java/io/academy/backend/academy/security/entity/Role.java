@@ -3,8 +3,10 @@ package io.academy.backend.academy.security.entity;
 import java.util.UUID;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
-
+@Document
 public class Role implements GrantedAuthority {
     private RoleType role;
 
